@@ -1,0 +1,286 @@
+1.  package Generics;
+
+		import java.util.HashMap;
+		import java.util.Map;
+		import java.util.Set;
+
+		public class Program1 {
+
+			public static void main(String[] args) {
+				Map<Long,Contact> m=new HashMap<>();
+				m.put(10012002l,new Contact(99887766,"Unkown","anonymous@abc.com",Contact.Gender.Male));
+				
+				Set<Long> keys=m.keySet();
+				System.out.println("Keys:-");
+				for(long i:keys)
+				{
+					System.out.println(i);
+				}
+				System.out.println("----------------------------------------------------------------------------");
+				System.out.println("Values:-");
+				for(long i:keys)
+				{
+					System.out.println(m.get(i));
+				}
+				System.out.println("----------------------------------------------------------------------------");
+				System.out.println("Key and Value-");
+				System.out.println(m);
+			}
+
+		}
+
+		class Contact{
+			
+			long phoneNo;
+			String name;
+			String email;
+			private Contact.Gender gen;
+			enum Gender{
+				Male,Female,Others
+			}
+			public Contact(long phoneNo, String name, String email ,Gender gen) {
+				super();
+				this.phoneNo = phoneNo;
+				this.name = name;
+				this.email = email;
+				this.gen=gen;
+			}
+			@Override
+			public String toString() {
+				return "Contact [phoneNo=" + phoneNo + ", name=" + name + ", email=" + email + ", gen=" + gen + "]";
+			}
+			
+		}
+2.  package collection;
+import java.util.HashSet;
+
+
+public class hashset{
+
+	public static void main(String[] args) {
+	    product s1=new product("car");
+	    product s2=new product("auto");
+	    product s3=new product("bike");
+	    product s4=new product("scooter");
+	    product s5=new product("scooty");
+	    product s6=new product("cycle");
+	    product s7=new product("bus");
+	    HashSet<product> duplicate=new HashSet<product>();
+	    duplicate.add(s1);
+	    duplicate.add(s2);
+	    duplicate.add(s3);
+	    duplicate.add(s4);
+	    duplicate.add(s7);
+	    duplicate.add(s6);
+	    duplicate.add(s1);
+	    duplicate.add(s5);
+	    System.out.println(duplicate);
+	}
+}
+
+class product{
+	private String productname;
+	public product (String productname) {
+		this.productname=productname;
+	}
+
+	public String toString() {
+		return productname;
+	}
+	
+}
+3.package Generics;
+		import java.util.Comparator;
+		import java.util.Scanner;
+		import java.util.TreeSet;
+
+		public class Prgm3 {
+
+			public static void main(String[] args) {
+				Scanner sc=new Scanner(System.in);
+				System.out.println("Choose between following options:");
+				System.out.println("1.ID|2.Name|3.Department|4.Salary");
+				int choose=sc.nextInt();
+				TreeSet<Employee> emp=null;
+				switch(choose)
+				{
+					case 1: emp=new TreeSet<>(new IdComp());
+							break;
+					case 2: emp=new TreeSet<>(new NameComp());
+							break;
+					case 3:	emp=new TreeSet<>(new DeptComp());
+							break;
+					case 4: emp=new TreeSet<>(new SalComp());
+							break;
+					default:System.out.println("Invalid Option");
+				}
+				emp.add(new Employee(10,"Naruto","IT",2000));
+				emp.add(new Employee(11,"Luffy","Management",2200));
+				emp.add(new Employee(12,"Goku","HR",1800));
+				emp.add(new Employee(13,"Madara","Management",1900));
+				emp.add(new Employee(14,"Itachi","HR",2100));
+				emp.add(new Employee(16,"Vegeta","Training",2400));
+				emp.add(new Employee(15,"Karma","IT",2000));
+				emp.add(new Employee(19,"Leleouch","IT",2300));
+				emp.add(new Employee(17,"Minato","HR",1900));
+				emp.add(new Employee(18,"Gohan","Management",1700));
+				
+				for(Employee e:emp)
+				{
+					System.out.println(e);
+				}
+			}
+
+		}
+
+		class IdComp implements Comparator<Employee> {
+			@Override
+			public int compare(Employee o1, Employee o2) {
+				if(o1.getId()>o2.getId())
+				{
+					return 1;
+				}
+				else
+				{
+					return -1;
+				}
+			}
+		}
+		class NameComp implements Comparator<Employee>{
+			@Override
+			public int compare(Employee o1, Employee o2) {
+				
+				return o1.getName().compareTo(o2.getName());
+			}
+		}
+		class DeptComp implements Comparator<Employee>{
+			@Override
+			public int compare(Employee o1, Employee o2) {
+				return o1.getDepartment().compareTo(o2.getDepartment());
+			}
+		}
+		class SalComp implements Comparator<Employee>{
+			@Override
+			public int compare(Employee o1, Employee o2) {
+				if(o1.getSalary()>o2.getSalary())
+				{
+					return 1;
+				}
+				else
+				{
+					return -1;
+				}
+			}
+		}
+		class Employee{
+			
+			int id;
+			String name;
+			String department;
+			int salary;
+			
+			public int getId() {
+				return id;
+			}
+			public void setId(int id) {
+				this.id = id;
+			}
+			public String getName() {
+				return name;
+			}
+			public void setName(String name) {
+				this.name = name;
+			}
+			public String getDepartment() {
+				return department;
+			}
+			public void setDepartment(String department) {
+				this.department = department;
+			}
+			public int getSalary() {
+				return salary;
+			}
+			public void setSalary(int salary) {
+				this.salary = salary;
+			}
+			
+			public Employee(int id, String name, String department, int salary) {
+				super();
+				this.id = id;
+				this.name = name;
+				this.department = department;
+				this.salary = salary;
+			}
+			@Override
+			public String toString() {
+				return "Employee [id=" + id + ", name=" + name + ", department=" + department + ", salary=" + salary + "]";
+			}
+			
+		}
+	
+4.import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.LinkedList;
+
+public class linkedlist {
+
+	public static void main(String[] args) {
+		String StringDate1="10-01-2000";
+		String StringDate2="12-07-2014";
+		String StringDate3="15-06-2020";
+		String StringDate4="16-04-2005";
+		Date date1=null;
+		try {
+		      date1=new SimpleDateFormat("dd-MM-yyyy").parse(StringDate1);
+		}catch (ParseException e) {
+			e.printStackTrace();
+		}
+		Date date2=null;
+		try {
+		      date2=new SimpleDateFormat("dd-MM-yyyy").parse(StringDate2);
+		}catch (ParseException e) {
+			e.printStackTrace();
+		}
+		Date date3=null;
+		try {
+		      date3=new SimpleDateFormat("dd-MM-yyyy").parse(StringDate3);
+		}catch (ParseException e) {
+			e.printStackTrace();
+		}
+		Date date4=null;
+		try {
+		      date4=new SimpleDateFormat("dd-MM-yyyy").parse(StringDate4);
+		}catch (ParseException e) {
+			e.printStackTrace();
+		}
+		LinkedList<Date> s1=new LinkedList<Date>();
+		 s1.add(date1);
+		 s1.add(date2);
+		 s1.add(date3);
+		 s1.add(date4);
+		 int i=s1.size()-1;
+		 while(i>=0) {
+			 SimpleDateFormat format=new SimpleDateFormat("dd-MM-yyyy");
+			 String strDate =format.format(s1.get(i));
+			 System.out.println("your date of birth is:"+strDate+"  ");
+			 int year=1900+s1.get(i).getYear();
+			 if(year%4==0)
+			 {
+				 System.out.println("it is a leap year");
+			 }
+			 else
+			 {
+				 System.out.println("it is not a leap year");
+			 }
+			 i--;
+		 }
+	}
+}
+		 
+			 
+		
+		
+		
+		
+			
