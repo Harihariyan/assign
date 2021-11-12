@@ -1,0 +1,214 @@
+1.  package lamb;
+@FunctionalInterface
+interface Arithmetic{
+	 int operations(int a,int b);
+	
+}
+public class Lambdaexample {
+
+	public static void main(String[] args) {
+	 Arithmetic addition=(a,b)->(a+b);
+	 System.out.println("addition:"+addition.operations(10,20));
+	 Arithmetic substraction=(a,b)->(a-b);
+	 System.out.println("substraction:"+substraction.operations(10,20));
+	 Arithmetic multiplication=(a,b)->(a*b);
+	 System.out.println("multiplication:"+multiplication.operations(10,20));
+	 Arithmetic division=(a,b)->(a/b);
+	 System.out.println("division:"+division.operations(10,20));
+
+
+
+
+	}
+
+}
+2. package lamada_assignment;
+import java.util.Arrays;
+import java.util.List;
+
+public class assign_2 {
+	
+
+		public static void main(String[] args) {
+			// TODO Auto-generated method stub
+
+			List<Orders> orders=Arrays.asList(new Orders(3455),
+					new Orders(545666),
+					new Orders(50000));
+		orders.stream().filter(t->t.getPrice()>10000).forEach(t -> System.out.println("order is accepted:"+t));
+			
+		
+		
+		}
+	}
+
+
+public class Orders {
+	double price;
+	
+	
+	public double getPrice() {
+		return price;
+	}
+
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+
+	public Orders(double price) {
+		super();
+		this.price = price;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Orders [price=" + price + "]";
+	}
+}
+3. import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+
+public class BuiltinMethods{
+	public static void main(String[] args) {
+		Consumer<Integer> c = i -> System.out.println(i);
+		Predicate<Integer> gt = i ->(i>10);
+		Supplier<Double> sp = ()->Math.random();
+		Function<Integer,Double> f=(a)->a/2.0;
+		System.out.println("Consumer");
+		c.accept(30);
+		System.out.println(gt.test(30));
+		System.out.println("Supplier:"+ sp.get());
+		System.out.println("Supply:"+f.apply(25));
+	}
+	
+}
+4. package Lambda;
+import java.util.*;
+public class ques4th {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+      
+		ArrayList<String> a = new ArrayList<>();
+		a.add("Bhav");
+		a.add("Keerth");
+		a.add("Nikki");
+		a.add("Ragi");		
+		a.add("Mintu");
+		a.add("Tinku");
+		System.out.println("Before removing : "+a);
+		a.removeIf(name->(name.length()%2!=0));
+		System.out.println("After removing : "+a);
+		
+		
+	}
+
+}
+5. import java.util.ArrayList;
+import java.util.List;
+
+public class lamda {
+  public static void main(String[] args) {
+	  List<String> names = new ArrayList<>();
+	  names.add("Allen");
+	  names.add("King");
+	  names.add("James");
+	  names.add("Jones");
+	  
+	  StringBuilder result = new StringBuilder();
+	  names.forEach(s->result.append(s.charAt(0)));
+	  System.out.println(result);
+  }
+  
+}
+6. package Lambda;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.UnaryOperator;
+public class Replaceup {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String arr[]= {"bit coin","stock market","coin master","master"};
+		List<String> arrayList=Arrays.asList(arr);
+		arrayList.replaceAll(e->e.toUpperCase());
+		System.out.println(arrayList);
+		
+	}
+
+}
+7.package Lambda;
+
+import java.util.HashMap;
+import java.util.Map.Entry;
+
+public class KeyValueIntoString
+{
+
+	public static void main(String[] args)
+	{
+		HashMap<Integer,String> hs=new HashMap<>();
+		StringBuilder sb=new StringBuilder();
+		hs.put(1, "Developer");
+		hs.put(2, "Testengineers");
+		hs.put(3, "support");
+		hs.put(4, "Junior Engineers");
+		System.out.println("The elements in the hashmap are:");
+		System.out.println(hs);		
+		System.out.println("After converting entire hashmap into a string, the result is:");
+		for (Entry<Integer, String> m:hs.entrySet()) 
+		{
+			sb.append(m); //Original string is changed
+		}
+		System.out.println(sb);
+		
+	}
+
+}
+8. import java.util.ArrayList;
+
+import java.util.List; 
+import java.util.function.Consumer;
+
+public class Lambda_8 {
+
+     public static void main(String[] args){
+
+        Print t=new Print();
+
+        t.start();
+        }
+
+}
+
+class Print extends Thread{
+
+         @Override
+          public void run() {
+               List<Integer> li=new ArrayList<>();
+
+                 li.add(38);
+
+                li.add(24);
+
+                li.add(46);
+
+                li.add(65);
+
+             Consumer<Integer> c=(n)->{ 
+                                          System.out.println(n);
+                 };
+
+    li.forEach(c);
+ }
+}
+	
+	
+	
+
